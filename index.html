@@ -133,9 +133,11 @@
                 processDate();
             });
 
+            const months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+
             var now = new Date();
             var day = ("0" + now.getDate()).slice(-2);
-            var month = ("0" + (now.getMonth() + 1)).slice(-2);
+            var month = months[now.getMonth()];
             var today = (day) + "-" + (month) + "-" + now.getFullYear();
             $('#date2').val(today);
         });
@@ -145,9 +147,8 @@
             var int = $('#Interest').val();
             var amt = $('#pamt').val();
 
-            processDate();
+            var totalDays = processDate();
 
-            var totalDays = $("#days").val()
             if (totalDays <= 15) {
                 totalDays = 15;
             } else if (totalDays > 15 && totalDays <= 30) {
@@ -180,6 +181,7 @@
 
             console.log("Actual Day Count : " + totalDays);
             $("#days").val(totalDays)
+            return totalDays;
 
         }
     </script>
